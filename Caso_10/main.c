@@ -177,4 +177,5 @@ int main(){
     list_each(result.I,value){
         printf("%d\n",value);
     }
+    return 0;
 }
