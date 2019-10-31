@@ -111,8 +111,10 @@ int main(){
     memset (&I4, 0, sizeof (I4));
     list_push(S4,22);
     list_push(S4,49);
-    list_push(S4,67);
+    list_push(S4,675);
     list_push(S4,90);
+    list_push(S4,905);
+    list_push(S4,20);
     Matroid matroid4 = {.S = S4,.I = I4,.function = isEvenNumber};
 
     //Second matroid configuration
@@ -124,6 +126,8 @@ int main(){
     list_push(S5,90);
     list_push(S5,107);
     list_push(S5,235);
+    list_push(S5,22);
+    list_push(S5,77);
     Matroid matroid5 = {.S = S5,.I = I5,.function = isEvenNumber};
 
     //Third matroid configuration
@@ -144,6 +148,7 @@ int main(){
     memset (&I7, 0, sizeof (I7));
     list_push(S7,113);
     list_push(S7,79);
+    list_push(S7,22);
     list_push(S7,31);
     list_push(S7,90);
     Matroid matroid7 = {.S = S7,.I = I7,.function = isEvenNumber};
@@ -157,6 +162,9 @@ int main(){
     list_push(S8,541);
     list_push(S8,367);
     list_push(S8,123);
+    list_push(S8,2);
+    list_push(S8,205);
+    list_push(S8,22);
     Matroid matroid8 = {.S = S8,.I = I8,.function = isEvenNumber};
 
     //Matroids are added into an array
@@ -169,5 +177,4 @@ int main(){
     list_each(result.I,value){
         printf("%d\n",value);
     }
-    return 0;
 }

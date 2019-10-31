@@ -5,6 +5,9 @@
 #include "matroid.h"
 #include <linkdlst.h>
 
+/*
+ * This function evaluates each element of the set S of a matroid with the function of the matroid
+ * */
 Matroid evaluateMatroid(Matroid pMatroid){
     #pragma omp parallel
     #pragma omp for
@@ -16,6 +19,9 @@ Matroid evaluateMatroid(Matroid pMatroid){
     return pMatroid;
 }
 
+/*
+ * This function passes each matroid to evaluation state
+ * */
 void testMatroids(Matroid pMatroids[],int pSize){
     #pragma omp parallel
     #pragma omp for
@@ -24,34 +30,37 @@ void testMatroids(Matroid pMatroids[],int pSize){
     }
 }
 
+/*
+ * This function determines the intersection between sets in parallel
+ * */
 Matroid getIntersection(Matroid pMatroids[],int pSize){
     Matroid result;
     if(pSize>0){
-        #pragma omp parallel
-        #pragma omp for
-        list(typeof (list_back(pMatroids[0].I)),I);
+
+        list(typeof (list_back(pMatroids[0].I)),I); //Declare a list of the type of the elements of the first matroid
         memset (&I, 0, sizeof (I));
-        list_each(pMatroids[0].I,value){
+        list_each(pMatroids[0].I,value){ //The values of the set S of the first matroid are copied in the list
             list_push(I,value);
         }
+        #pragma omp parallel
+        #pragma omp for
         for (int numMatroid = 1; numMatroid < pSize; numMatroid++) {
             #pragma omp for
-            list_each(I,value){
-                #pragma omp for
-                bool isValue = false;
-                list_each(pMatroids[numMatroid].I,value2){
-                    if((int)value==(int)value2){
+            list_each(I,element){
+                bool isValue = false; //flag to know if the element is present in the set I of the matroid
+                list_each(pMatroids[numMatroid].I,element2){
+                    if((int)element==(int)element2){ //Compare the elements
                         isValue = true;
                         break;
                     }
                 }
-                if(!isValue){
-                    list_remove(I,value);
+                if(!isValue){ //In case the element doesn't exist is necessary to delete of the set
+                    list_remove(I,element);
                 }
             }
         }
-        result.I = I;
-        return result;
+        result.I = I; //The list is added like the set I of an matroid
+        return result; //The matroid is returned
     }else {
         return result;
     }

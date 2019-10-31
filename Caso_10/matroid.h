@@ -4,12 +4,12 @@
 #include <stdbool.h>
 #include "linkdlst.h"
 
-typedef void* DataType;
+typedef void* dataType;
 
 typedef struct Matroid{
 
-    list(DataType,S);
-    list(DataType,I);
+    list(dataType,S);
+    list(dataType,I);
     bool (*function)();
 }Matroid;
 
