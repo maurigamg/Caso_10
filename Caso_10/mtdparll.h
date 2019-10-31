@@ -49,7 +49,7 @@ Matroid getIntersection(Matroid pMatroids[],int pSize){
             list_each(I,element){
                 bool isValue = false; //flag to know if the element is present in the set I of the matroid
                 list_each(pMatroids[numMatroid].I,element2){
-                    if((int)element==(int)element2){ //Compare the elements
+                    if(element==element2){ //Compare the elements
                         isValue = true;
                         break;
                     }
